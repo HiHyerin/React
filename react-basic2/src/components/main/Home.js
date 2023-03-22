@@ -20,6 +20,7 @@ class Home extends Component{
         }).then(response=>{
             this.setState({cate_list1:response.data})
         })
+
         axios.get('http://localhost/food/category_react',{
             params:{
                 cno:2
@@ -27,6 +28,7 @@ class Home extends Component{
         }).then(response=>{
             this.setState({cate_list2:response.data})
         })
+
         axios.get('http://localhost/food/category_react',{
             params:{
                 cno:3
@@ -49,7 +51,7 @@ class Home extends Component{
                     </NavLink>
                 </div>
             </div>
-        )
+        ) // for(CateEntity cate:this.state.cate_list1){ <div className...> ~~}
 
         const html2 = this.state.cate_list2.map(cate=>
             <div className="col-md-4">

@@ -3,7 +3,7 @@ import {useParams} from "react-router";
 import axios from "axios";
 import {NavLink} from "react-router-dom";
 
-function FoodList (props) {
+function FoodList () {
         let {cno} = useParams()
         const [foodList, setFoodList] = useState([])// this.state={foodList:[]} const[변수명, setter]
         const [cateInfo, setCateInfo] = useState([])
@@ -30,23 +30,23 @@ function FoodList (props) {
 
         // for(FoodVO vo:list) [{},{},{},..]
         let html = foodList.map((food)=>
-            <table className="table" each="vo:${list}">
+            <table className="table" >
                     <tr>
-                        <td className="text-center" width="30%" rowspan="4">
+                        <td className="text-center" width="30%" rowSpan="4">
                             <NavLink to={"/food/food_detail/"+food.fno}>
                                 <img src={food.poster} style={{"width":"320px","height":"150px"}} className="img-rounded"/>
                             </NavLink>
                         </td>
-                        <td width="70%"><NavLink to={"/food/food_detail/"+food.fno}><span text>{food.name}</span></NavLink>&nbsp;<span style={{"color":"orange"}} text>{food.score}</span></td>
+                        <td width="70%"><NavLink to={"/food/food_detail/"+food.fno}><span>{food.name}</span></NavLink>&nbsp;<span style={{"color":"orange"}}>{food.score}</span></td>
                     </tr>
                 <tr>
-                    <td width="70%" text>{food.address}</td>
+                    <td width="70%" >{food.address}</td>
                 </tr>
                 <tr>
-                    <td width="70%" text>{food.tel}</td>
+                    <td width="70%" >{food.tel}</td>
                 </tr>
                 <tr>
-                    <td width="70%" text>{food.type}</td>
+                    <td width="70%" >{food.type}</td>
                 </tr>
         </table>
         )
@@ -56,8 +56,8 @@ function FoodList (props) {
                             <h3 className="text-center" >{cateInfo.title}</h3>
                             <h4 className="text-center" >{cateInfo.subject}</h4> {/* {} : request.getParameter*/}
                     </div>
-                    <div class="row">
-                            <table class="table">
+                    <div className="row">
+                            <table className="table">
                                <tr>
                                     <td>
                                             {html}

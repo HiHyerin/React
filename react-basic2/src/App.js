@@ -23,7 +23,7 @@ class App extends Component{
           <Header/>
           <div className={"container"}>
             <Routes>
-              <Route exact path={"/"} element={<Home/>}/> {/*requestMapping*/}
+                <Route exact path={"/"} element={<Home/>}/> {/*requestMapping*/}
                 <Route path={"/seoul/location"} element={<Location/>}/>
                 <Route path={"/seoul/nature"} element={<Nature/>}/>
                 <Route path={"/seoul/shop"} element={<Shop/>}/>
