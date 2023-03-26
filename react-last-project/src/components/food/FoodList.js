@@ -8,7 +8,23 @@ function FoodList(){
     const [totalpage,setTotalpage]=useState(0);
     const [startPage,setStartPage]=useState(0);
     const [endPage,setEndPage]=useState(0);
+    const [cookieList, setCookieList] = useState([])
     /*******************************************************************/
+
+    let cookie = document.cookie.split(";");
+    let cc=[]
+    for(let i=0;i<cookie.length;i++){
+        let a = cookie[i];
+        let b = a.substring(a.indexOf("=")+1)
+        cc.push(b.trim())
+    }
+    let m = cc.map((mm,index)=>
+        <li className={index%4==0?'one_quarter first':'one_quarter'}>
+            <img src={mm}/>
+
+        </li>
+    )
+
     useEffect(()=>{
         axios.get('http://localhost/jeju/food_list_react',{
             params:{
@@ -17,6 +33,11 @@ function FoodList(){
         }).then(response=>{
             console.log(response.data)
             setFoodList(response.data);
+        })
+        // 쿠키
+        axios.get("http://localhost/jeju/jeju_cookie_react").then(response=>{
+            console.log(response.data)
+            setCookieList(response.data)
         })
     },[])
 
@@ -34,6 +55,8 @@ function FoodList(){
 
         })
     },{})
+
+
     /*******************************************************************/
     // 이벤트 처리
     const pages=(page)=>{
@@ -78,10 +101,11 @@ function FoodList(){
         <li className={index%4==0?'one_quarter first':'one_quarter' }>
             <NavLink to={"/jeju/food_detail/"+food.no}>
                 <img src={food.poster} title={food.title} style={{"fontFamily":"TheJamsil5Bold"}}/>
-                <b className={"text-center"} style={{"color":"black"}}>{food.title}</b>
+                <b style={{"textAlign":"center", "color":"black"}}>{food.title}</b>
             </NavLink>
         </li>
     )
+
 
     let row=[];
     if(startPage>1)
@@ -125,7 +149,17 @@ function FoodList(){
                             </ul>
                         </nav>
                     </div>
-
+                    {/* 쿠키 */}
+                    <div className="content">
+                        <div id="gallery">
+                            <figure>
+                                <header className="heading" style={{"fontFamily":"TheJamsil5Bold"}}><b>최근 방문 맛집</b></header>
+                                <ul className="nospace clear">
+                                    {m}
+                                </ul>
+                            </figure>
+                        </div>
+                    </div>
                     <div className="clear"></div>
                 </main>
             </div>

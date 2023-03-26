@@ -9,6 +9,8 @@ import EventList from "./components/food/EventList";
 import RecipeList from "./components/recipe/RecipeList";
 import FoodDetail from "./components/food/FoodDetail";
 import ProductList from "./components/product/ProductList";
+import FoodFind from "./components/food/FoodFind";
+import NewsList from "./components/news/NewsList";
 // route : 바뀌는 화면, routes :화면 모아놓은 것
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
             <Route path={"/recipe/recipe_list"} element={<RecipeList/>}/>
             <Route path={"/jeju/food_detail/:no"} element={<FoodDetail/>}/>
             <Route path={"/jeju/product_list"} element={<ProductList/>}/>
+            <Route path={"/jeju/food_find"} element={<FoodFind/>}/>
+            <Route path={"/news/news_list"} element={<NewsList/>}/>
         </Routes>
         <Footer/>
       </Fragment>

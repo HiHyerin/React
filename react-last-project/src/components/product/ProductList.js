@@ -8,23 +8,29 @@ function ProductList(){
     const [totalpage,setTotalpage]=useState(0);
     const [startPage,setStartPage]=useState(0);
     const [endPage,setEndPage]=useState(0);
+    const [ss, setSs] = useState('');
+    const [fdata,setFdata] = useState([]);
 
     /*******************************************************************/
     useEffect(()=>{
         axios.get('http://localhost/jeju/product_list_react',{
             params:{
-                page:curpage
+                page:curpage,
+                title:ss
             }
         }).then(response=>{
             console.log(response.data)
             setProductList(response.data);
+            //setFdata(response.data)
+
         })
     },[])
 
     useEffect(()=>{
         axios.get("http://localhost/jeju/product_page_react",{
             params:{
-                page:curpage
+                page:curpage,
+                title:ss
             }
         }).then(response=>{
             console.log(response.data)
@@ -32,25 +38,61 @@ function ProductList(){
             setCurpage(response.data.curpage)
             setStartPage(response.data.startPage)
             setEndPage(response.data.endPage)
+            //setFdata(response.data)
 
         })
     },{})
 
     /*******************************************************************/
     // 이벤트 처리
-    const pages=(page)=>{
+    const dataChange=(e)=>{
+        setSs(e.target.value)
+
+    }
+    /*const pages=(page)=>{
         axios.get('http://localhost/jeju/product_list_react',{
             params:{
                 page:page
+
             }
         }).then(response=>{
             console.log(response.data)
             setProductList(response.data);
+            //setFdata(response.data)
         })
 
         axios.get("http://localhost/jeju/product_page_react",{
             params:{
-                page:page
+                page:page,
+                title:ss
+            }
+        }).then(response=>{
+            console.log(response.data)
+            setTotalpage(response.data.totalpage)
+            setCurpage(response.data.curpage)
+            setStartPage(response.data.startPage)
+            setEndPage(response.data.endPage)
+            //setFdata(response.data)
+
+        })
+    }*/
+
+    const findData=(page)=>{
+        // alert(ss)
+        axios.get("http://localhost/jeju/product_list_react",{
+            params:{
+                page:page,
+                title:ss
+            }
+        }).then(response=>{
+            console.log(response.data)
+            setProductList(response.data);
+
+        })
+        axios.get("http://localhost/jeju/product_page_react",{
+            params:{
+                page:page,
+                title:ss
             }
         }).then(response=>{
             console.log(response.data)
@@ -62,16 +104,47 @@ function ProductList(){
         })
     }
 
+    const dataKeyDown=(e)=>{
+        setCurpage(1)
+        if(e.keyCode == 13){
+            axios.get("http://localhost/jeju/product_list_react",{
+                params:{
+                    page:curpage,
+                    title:ss
+                }
+            }).then(response=>{
+                console.log(response.data)
+                //setFdata(response.data)
+                setProductList(response.data);
+
+            })
+            axios.get("http://localhost/jeju/product_page_react",{
+                params:{
+                    page:curpage,
+                    title:ss
+                }
+            }).then(response=>{
+                console.log(response.data)
+                setTotalpage(response.data.totalpage)
+                setCurpage(response.data.curpage)
+                setStartPage(response.data.startPage)
+                setEndPage(response.data.endPage)
+                //setFdata(response.data)
+
+            })
+        }
+    }
+
     const pagePrev=()=>{
-        pages(startPage-1)
+        findData(startPage-1)
     }
 
     const pageNext=()=>{
-        pages(endPage+1)
+        findData(endPage+1)
     }
 
     const pageChange=(page)=>{
-        pages(page)
+        findData(page)
 
     }
 
@@ -140,9 +213,13 @@ function ProductList(){
                 <main className="hoc container clear" >
 
                     <div className="content" >
+
                         <div id="gallery">
                             <figure>
-                                <header className="heading" style={{"fontFamily":"TheJamsil5Bold"}}><b>관광 기념품샵</b></header>
+                                <header className="heading inline" style={{"fontFamily":"TheJamsil5Bold"}}><b style={{"paddingRight":"650px"}}>관광 기념품샵</b>
+                                    <input type={"text"} size={"20"} className={"input-lg"} onChange={dataChange} onKeyDown={dataKeyDown} style={{"height":"30px"}}/>
+                                    <input type={"button"} value={"검색"} className={"btn btn-sm btn-danger"} onClick={()=>findData()} style={{"height":"30px","fontSize":"15px"}}/>
+                                </header>
                                 <ul className="nospace clear">
                                     {html}
                                 </ul>

@@ -41,22 +41,24 @@ function Header(props){
                             </ul>
                         </li>
 
-                        <li><a className="drop" href="#">서울</a>
+                       {/* <li><a className="drop" href="#">서울</a>
                             <ul>
                                 <li><a href="pages/gallery.html">명소</a></li>
                                 <li><a href="pages/full-width.html">자연/관광</a></li>
                                 <li><a href="pages/full-width.html">쇼핑</a></li>
                             </ul>
-                        </li>
+                        </li>*/}
 
-                        <li><a className="drop" href="#">레시피</a>
+                        {/*<li><a className="drop" href="#">레시피</a>
                             <ul>
                                 <li><NavLink to={"/recipe/recipe_list"}>맛집</NavLink></li>
                                 <li><a href="pages/full-width.html">쉐프</a></li>
                             </ul>
-                        </li>
+                        </li>*/}
                         <li><NavLink to={"/jeju/product_list"} href="#">기념품</NavLink></li>
                         <li><a href="#">커뮤니티</a></li>
+                        <li><NavLink to={"/jeju/food_find"}>맛집 검색</NavLink></li>
+                        <li><NavLink to={"/news/news_list"}>뉴스검색</NavLink></li>
                     </ul>
                 </nav>
             </header>

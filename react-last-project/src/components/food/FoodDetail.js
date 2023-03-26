@@ -7,7 +7,7 @@ function SeoulFoodDetail(props)
     let {no}=useParams();
     const [foodDetail,setFoodDetail]=useState({})
     useEffect(()=>{
-        axios.get("http://localhost/jeju/food_detail_react",{
+        axios.get("http://localhost/jeju/food_detail_before",{
             params:{
                 no:no
             }
@@ -16,6 +16,9 @@ function SeoulFoodDetail(props)
             setFoodDetail(response.data)
         })
     },{})
+
+    document.cookie="jeju"+parseInt(no)+"="+foodDetail.poster;
+
     useEffect(()=>{
         const script=document.createElement("script")
         script.async=true
@@ -91,7 +94,7 @@ function SeoulFoodDetail(props)
                     <table className={"table"}>
                         <tbody>
                         <tr>
-                            <td colSpan={"2"} >{foodDetail.title}</td>
+                            <td colSpan={"2"} style={{"textAlign":"center"}} >{foodDetail.title}</td>
                         </tr>
                         <tr>
                             <th width={"20%"} >주소</th>

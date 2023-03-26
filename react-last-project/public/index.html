@@ -17,6 +17,7 @@
 
     <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 
+
     <style>
       @font-face {
         font-family: 'TheJamsil5Bold';
@@ -24,6 +25,86 @@
         font-weight: 700;
         font-style: normal;
       }
+      fieldset {
+        position: center;
+        text-align: center;
+        display: inline-block;
+        padding: 0 0 0 40px;
+        background: #fff;
+        border: none;
+        border-radius: 5px;
+      }
+
+      .input1{
+        position: relative;
+        text-align: center;
+        width: 400px;
+        height: 50px;
+        padding: 0;
+        display: inline-block;
+        float: left;
+      }
+
+      .button1 {
+        position: relative;
+        width: 300px;
+        height: 50px;
+        padding: 0;
+        display: inline-block;
+        float: left;
+      }
+
+      .input1 {
+        color: #666;
+        z-index: 2;
+        border: 0 none;
+      }
+      .input1:focus {
+        outline: 0 none;
+      }
+      .input1:focus + .button1 {
+        -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        transform: translate(0, 0);
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+      }
+      .input1:focus + .button1 .fa {
+        -webkit-transform: translate(0px, 0);
+        -ms-transform: translate(0px, 0);
+        transform: translate(0px, 0);
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        color: #fff;
+      }
+      .button1 {
+        z-index: 1;
+        width: 50px;
+        border: 0 none;
+        background: #ceb980;
+        cursor: pointer;
+        border-radius: 0 5px 5px 0;
+        -webkit-transform: translate(-50px, 0);
+        -ms-transform: translate(-50px, 0);
+        transform: translate(-50px, 0);
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+      }
+
+      .fa-search {
+        font-size: 1.4rem;
+        color: #29abe2;
+        z-index: 3;
+        top: 25%;
+        -webkit-transform: translate(50px, 0);
+        -ms-transform: translate(50px, 0);
+        transform: translate(50px, 0);
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;
+      }
+
     </style>
   </head>
   <body id="top">
